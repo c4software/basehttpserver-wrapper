@@ -1,8 +1,5 @@
 from extended_BaseHTTPServer import serve,route,redirect, override
 
-# TODO URL AVEC PARTIES DYNAMIQUE	
-# TODO POST METHOD
-
 @route("/",["GET"])
 def main(**kwargs):
 	if "name" in kwargs:
