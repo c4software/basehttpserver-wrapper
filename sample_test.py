@@ -1,4 +1,4 @@
-from extended_BaseHTTPServer import serve,route,redirect
+from extended_BaseHTTPServer import serve,route,redirect, handler
 
 # TODO URL AVEC PARTIES DYNAMIQUE	
 # TODO POST METHOD
@@ -12,9 +12,12 @@ def main(**kwargs):
 
 @route("/form",["GET","POST"])
 def main(**kwargs):
-	return "<form method='post'><input type='submit' /><input type='text' name='test' /></form>"
+	return "<form method='post'><input type='submit' /><input type='text' name='name' /></form>"
 
 
+@handler("404")
+def handler_404():
+	return "Contenu introuvable."
 
 # @route("/:name",["GET"])
 # def hello(**kwargs):

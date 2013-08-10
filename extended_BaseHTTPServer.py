@@ -15,6 +15,13 @@ def route(path="/", method=["GET"]):
 		return f
 	return decorator
 
+handler_method = {}
+def handler(method=None):
+	def decorator(f):
+		handler_method[method] = f
+		return f
+	return decorator
+
 class extended_BaseHTTPServer(BaseHTTPServer.BaseHTTPRequestHandler):
 	def log_message(self, format, *args):
 		return ""
@@ -38,35 +45,38 @@ class extended_BaseHTTPServer(BaseHTTPServer.BaseHTTPRequestHandler):
 	def do_routing(s, o, arguments, action):
 		if o.path in register_route[action]:
 			retour = register_route[action][o.path](**arguments)
-
-			if type(retour) is dict:
-				s.send_response(retour.get("code",200))
-				for header in retour:
-					if header not in ["code","content"]:
-						s.send_header(header, retour[header])
-				s.end_headers()
-				s.wfile.write(retour['content'])
-
-			else:
-				s.send_response(200)
-				s.send_header("Content-type", "text/html")
-				s.end_headers()
-				s.wfile.write(retour)
+			build_response(s, retour, 200)
 		else:
 			# Fichier static ?
 			try:
 				with open(os.path.join("."+o.path)) as f:
 					fname,ext = os.path.splitext(o.path)
-					s.send_response(200)
-					s.send_header('Content-type', types_map[ext])
-					s.end_headers()
-					s.wfile.write(f.read())
+					ctype = "text/plain"
+					if ext in types_map:
+						ctype = types_map[ext]
+					build_response(s, {'Content-type':ctype,"content":f.read()}, 200)
 			except Exception as e:
-				s.send_response(404)
-				s.send_header("Content-type", "text/html")
-				s.end_headers()
 				# Url introuvale et fichier static introuvable ==> 404
-				s.wfile.write("TODO 404 STUFF")
+				if "404" not in handler_method:
+					build_response(s, "404 - Not Found", 404)
+				else:
+					retour = handler_method['404']()
+					build_response(s, retour, 404)
+
+
+def build_response(output, retour, code=200):
+	if type(retour) is dict:
+		output.send_response(retour.get("code",code))
+		for header in retour:
+			if header not in ["code","content"]:
+				output.send_header(header, retour[header])
+		output.end_headers()
+		output.wfile.write(retour['content'])
+	else:
+		output.send_response(code)
+		output.send_header("Content-type", "text/html")
+		output.end_headers()
+		output.wfile.write(retour)
 
 
 def redirect(location=""):
