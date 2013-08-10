@@ -16,7 +16,7 @@ def route(path="/", method=["GET"]):
 	return decorator
 
 handler_method = {}
-def handler(method=None):
+def overide(method=None):
 	def decorator(f):
 		handler_method[method] = f
 		return f
