@@ -49,18 +49,22 @@ class extended_BaseHTTPServer(BaseHTTPServer.BaseHTTPRequestHandler):
 		else:
 			# Fichier static ?
 			try:
-				with open(os.path.join("."+o.path)) as f:
-					fname,ext = os.path.splitext(o.path)
-					ctype = "text/plain"
-					if ext in types_map:
-						ctype = types_map[ext]
-					build_response(s, {'Content-type':ctype,"content":f.read()}, 200)
+				if "static" in handler_method:
+					retour = handler_method['static'](o, arguments)
+					build_response(s, retour, 200)
+				else:
+					with open(os.path.join("."+o.path)) as f:
+						fname,ext = os.path.splitext(o.path)
+						ctype = "text/plain"
+						if ext in types_map:
+							ctype = types_map[ext]
+						build_response(s, {'Content-type':ctype,"content":f.read()}, 200)
 			except Exception as e:
 				# Url introuvale et fichier static introuvable ==> 404
 				if "404" not in handler_method:
 					build_response(s, "404 - Not Found", 404)
 				else:
-					retour = handler_method['404']()
+					retour = handler_method['404'](o, arguments)
 					build_response(s, retour, 404)
 
 

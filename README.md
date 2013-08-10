@@ -9,8 +9,9 @@ Supported:
 * Redirect function.
 * Header overiding (via dict).
 * Minimal route decorator.
-* 404 Method, Overiding the default behaviour (via @overide("404"))
+* 404 Method, Overiding the default behaviour (via @override("404"))
+* Overriding the static file delivery (via @override("static")). PS: You have to raise an exception if you want to raise a 404 error
 
 Planned:
 * Full route decorator with dynamic param (@route("/demo/:demo:/")).
-* Overiding the static file delivery (via @overide("static")).
+

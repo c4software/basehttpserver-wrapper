@@ -16,15 +16,15 @@ def main(**kwargs):
 
 
 @override("404")
-def handler_404():
+def handler_404(o, arguments):
 	return "Contenu introuvable."
 
+@override("static")
+def handler_static(o, arguments):
+	raise Exception("Fichier introuvable")
 
 # Not yet Implemented
 
-# @override("static")
-# def handler_static():
-# 	return "Static"
 # @route("/:name",["GET"])
 # def hello(**kwargs):
 # 	return "Bonjour {name}"
