@@ -19,6 +19,12 @@ def main(**kwargs):
 def handler_404():
 	return "Contenu introuvable."
 
+
+# Not yet Implemented
+
+# @override("static")
+# def handler_static():
+# 	return "Static"
 # @route("/:name",["GET"])
 # def hello(**kwargs):
 # 	return "Bonjour {name}"
