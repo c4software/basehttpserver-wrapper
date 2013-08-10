@@ -24,7 +24,6 @@ def handler_static(o, arguments):
 	raise Exception("Fichier introuvable")
 
 # Not yet Implemented
-
 # @route("/:name",["GET"])
 # def hello(**kwargs):
 # 	return "Bonjour {name}"
