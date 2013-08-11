@@ -25,7 +25,7 @@ def handler_static(o, arguments):
 # def hello(**kwargs):
 # 	return "Bonjour {name}"
 
-@route("/test",["GET"])
+@route("/echo",["GET"])
 def test(**kwargs):
 	print kwargs
 	return {"content":"Test","code":200,"Content-type":"text-plain"}
