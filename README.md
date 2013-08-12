@@ -2,7 +2,7 @@
 
 Simple layer to simplify the usage of BaseHTTPServer. Useful for simple API in embed project.
 
-## Example :
+### Example :
 
 ```python
 from extended_BaseHTTPServer import serve,route,redirect, override
