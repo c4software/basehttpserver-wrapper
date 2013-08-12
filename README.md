@@ -12,6 +12,7 @@ def main(**kwargs):
 	return "Hello Wrapper"
 ```
 
+### Functionalities
 
 Supported:
 * GET/POST method.
