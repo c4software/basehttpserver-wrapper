@@ -3,15 +3,15 @@ basehttpserver-wrapper
 
 Simple layer to simplify the usage of BaseHTTPServer. Useful for simple API in embed project.
 
-Example :
----------
-´´´python
+# Example :
+
+```python
 from extended_BaseHTTPServer import serve,route,redirect, override
 
 @route("/",["GET"])
 def main(**kwargs):
 	return "Hello Wrapper"
-´´´´
+```
 
 
 Supported:
