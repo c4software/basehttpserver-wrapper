@@ -1,3 +1,5 @@
+import sys
+sys.path.append('../') # Just to make the GIT source more cleaner without creating a module. In YOUR project you DON'T have to do that
 from extended_BaseHTTPServer import serve,route,redirect, override
 
 @route("/",["GET"])
