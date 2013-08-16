@@ -1,7 +1,6 @@
 import sys
 import argparse
 import subprocess
-import urllib
 sys.path.append('../') # Just to make the GIT source more cleaner without creating a module. In YOUR project you DON'T have to do that
 from extended_BaseHTTPServer import serve,route
 
@@ -13,7 +12,8 @@ def play(file=""):
 		current_playing.pop().kill()
 
 	try:
-		current_playing.append(subprocess.Popen("{0} '{1}' vlc://quit".format(args.player, file[0]), shell=True))
+		file = " ".join(("'"+item+"'" for item in file))
+		current_playing.append(subprocess.Popen("{0} {1} vlc://quit".format(args.player, file), shell=True))			
 		return "{'stream':true}"
 	except:
 		return "{'stream':false}"
