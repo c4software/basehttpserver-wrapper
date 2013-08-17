@@ -18,10 +18,10 @@ Supported:
 * GET/POST method.
 * Serve function.
 * Redirect function.
-* Header overiding (via dict).
+* Header Overriding (via dict).
 * Minimal route decorator.
-* 404 Method, Overiding the default behaviour (via @override("404"))
-* Handle Internal Error (500 error), Overiding the default behaviour (via @override("500"))
+* 404 Method, Overriding the default behaviour (via @override("404"))
+* Handle Internal Error (500 error), Overriding the default behaviour (via @override("500"))
 * Overriding the static file delivery (via @override("static")). PS: You have to raise an exception if you want to raise a 404 error
 
 Planned:
