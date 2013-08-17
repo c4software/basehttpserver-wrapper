@@ -21,9 +21,9 @@ Supported:
 * Header overiding (via dict).
 * Minimal route decorator.
 * 404 Method, Overiding the default behaviour (via @override("404"))
+* Handle Internal Error (500 error), Overiding the default behaviour (via @override("500"))
 * Overriding the static file delivery (via @override("static")). PS: You have to raise an exception if you want to raise a 404 error
 
 Planned:
 * Full route decorator with dynamic param (@route("/demo/:demo:/")).
-* Handle Internal Error (500 error)
 

@@ -43,29 +43,37 @@ class extended_BaseHTTPServer(BaseHTTPServer.BaseHTTPRequestHandler):
 		s.do_routing(o, arguments, "GET")
 	
 	def do_routing(s, o, arguments, action):
-		if o.path in register_route[action]:
-			retour = register_route[action][o.path](**arguments)
-			build_response(s, retour, 200)
-		else:
-			# Fichier static ?
-			try:
-				if "static" in handler_method:
-					retour = handler_method['static'](o, arguments)
-					build_response(s, retour, 200)
-				else:
-					with open(os.path.join("."+o.path)) as f:
-						fname,ext = os.path.splitext(o.path)
-						ctype = "text/plain"
-						if ext in types_map:
-							ctype = types_map[ext]
-						build_response(s, {'Content-type':ctype,"content":f.read()}, 200)
-			except Exception as e:
-				# Url introuvale et fichier static introuvable ==> 404
-				if "404" not in handler_method:
-					build_response(s, "404 - Not Found", 404)
-				else:
-					retour = handler_method['404'](o, arguments)
-					build_response(s, retour, 404)
+		try:
+			if o.path in register_route[action]:
+				retour = register_route[action][o.path](**arguments)
+				build_response(s, retour, 200)
+			else:
+				# Fichier static ?
+				try:
+					if "static" in handler_method:
+						retour = handler_method['static'](o, arguments)
+						build_response(s, retour, 200)
+					else:
+						with open(os.path.join("."+o.path)) as f:
+							fname,ext = os.path.splitext(o.path)
+							ctype = "text/plain"
+							if ext in types_map:
+								ctype = types_map[ext]
+							build_response(s, {'Content-type':ctype,"content":f.read()}, 200)
+				except Exception as e:
+					# Url introuvale et fichier static introuvable ==> 404
+					if "404" not in handler_method:
+						build_response(s, "404 - Not Found", 404)
+					else:
+						retour = handler_method['404'](o, arguments)
+						build_response(s, retour, 404)
+		except:
+			# Gestion des erreurs
+			if "500" not in handler_method:
+				build_response(s, "Internal Server Error", 500)
+			else:
+				retour = handler_method['500'](o, arguments)
+				build_response(s, retour, 500)
 
 
 def build_response(output, retour, code=200):

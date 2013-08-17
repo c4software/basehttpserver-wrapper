@@ -18,6 +18,10 @@ def main(**kwargs):
 def handler_404(o, arguments):
 	return "Contenu introuvable."
 
+@override("500")
+def handler_500(o, arguments):
+	return "Erreur Interne."
+
 @override("static")
 def handler_static(o, arguments):
 	raise Exception("Fichier introuvable")
