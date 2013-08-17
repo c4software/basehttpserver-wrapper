@@ -25,4 +25,5 @@ Supported:
 
 Planned:
 * Full route decorator with dynamic param (@route("/demo/:demo:/")).
+* Handle Internal Error (500 error)
 
