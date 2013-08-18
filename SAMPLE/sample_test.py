@@ -10,7 +10,7 @@ def main(**kwargs):
 		return "Index <br /> <a href='/?name=valentin'>Test Valentin</a><br /> <a href='/form'>Form Test</a>"
 
 @route("/form",["GET","POST"])
-def main(**kwargs):
+def form(**kwargs):
 	return "<form method='post'><input type='submit' /><input type='text' name='name' /></form>"
 
 
@@ -37,7 +37,7 @@ def test(**kwargs):
 	return {"content":"Test","code":200,"Content-type":"text-plain"}
 
 @route("/redirect",["GET"])
-def main(**kwargs):
+def redirect(**kwargs):
 	return redirect("/")
 
 
