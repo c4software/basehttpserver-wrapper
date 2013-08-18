@@ -2,6 +2,9 @@
 
 Simple layer to simplify the usage of BaseHTTPServer. Useful for simple API in embed project.
 
+*To be clear this wrapper is not the way to create a full website (like you can do with Flask or Bottle.py) its just a simple way to do some internal API for your application*
+
+
 ### Example :
 
 ```python
