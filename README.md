@@ -8,11 +8,14 @@ Simple layer to simplify the usage of BaseHTTPServer. Useful for simple API in e
 ### Example :
 
 ```python
-from extended_BaseHTTPServer import serve,route,redirect, override
+from extended_BaseHTTPServer import serve,route 
 
 @route("/",["GET"])
 def main(**kwargs):
 	return "Hello Wrapper"
+
+if __name__ == '__main__':
+	serve(ip="0.0.0.0", port=5000)
 ```
 
 ### Functionalities
