@@ -15,15 +15,15 @@ def form(**kwargs):
 
 
 @override("404")
-def handler_404(o, arguments):
+def handler_404(o, arguments, action):
 	return "Contenu introuvable."
 
 @override("500")
-def handler_500(o, arguments):
+def handler_500(o, arguments, action):
 	return "Erreur Interne."
 
 @override("static")
-def handler_static(o, arguments):
+def handler_static(o, arguments, action):
 	raise Exception("Fichier introuvable")
 
 # Not yet Implemented
