@@ -108,4 +108,4 @@ parser.add_argument('--player', action='store',help='Path to VLC command line (/
 args = parser.parse_args()
 args.player = shlex.split(args.player)
 
-serve(ip="0.0.0.0", port=5000)
+serve(ip="0.0.0.0", port=8000)
