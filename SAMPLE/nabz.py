@@ -179,7 +179,7 @@ def say(text="Bonjour"):
 
 
 parser = argparse.ArgumentParser(description='Simple Nabz.')
-parser.add_argument('--player', action='store',help='Path to VLC command line (/usr/bin/cvlc --play-and-exit)', default="/usr/bin/cvlc --play-and-exit")
+parser.add_argument('--player', action='store',help='Path to VLC command line (/usr/bin/cvlc --play-and-exit  --novideo)', default="/usr/bin/cvlc --play-and-exit  --novideo")
 args = parser.parse_args()
 args.player = shlex.split(args.player)
 
