@@ -40,7 +40,7 @@ def index():
 		}
 		.history_container{  
 			max-height: 130px;
-			overflow: scroll;
+			overflow-x: auto;
 			width: 80%;
 			margin: auto;
 		}
